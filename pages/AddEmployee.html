@@ -23,7 +23,7 @@
     </header>
     <!-- UC2 Form with header and name-->
     <div id="formId" class="form-content">
-        <form class="form" action="#" onreset="resetForm()" onsubmit="save()">
+        <form class="form" action="#"  onsubmit="save();return false">
             <div class="form-head">Employee Payroll form</div>
             <div class="row-content">
                 <label class="label text" for="name">Name</label>
@@ -158,7 +158,7 @@
                 <textarea id="notes" class="input" name="Notes" placeholder="" style="height: 100px;"></textarea>
             </div>
             <div class="buttonParent">
-                <a href="./AddEmployee.html" class="resetButton button cancelButton">Cancel</a>
+                <a href="./HomePage.html" class="resetButton button cancelButton">Cancel</a>
                 <div class="submit-reset">
                     <button type="submit" class="button submitButton" id="submitButton">Submit</button>
                     <button type="reset" class="resetButton button">Reset</button>

@@ -1,58 +1,72 @@
-class EmployeePayrollData{
-    
-    //getter and setter method
-    get id(){return this._id;}
+class EmployeePayroll {
+
+    get id(){
+        return this._id;
+    }
     set id(id){
         this._id=id;
     }
      
-    get name() {return this._name;}
+    get name() {
+        return this._name;
+    }
     set name(name) {
+        console.log("inside setter");
         const nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
         if (nameRegex.test(name)) {
             this._name=name;
         } else {
-            throw "Name is Incorrect!";
+            throw "Name is incorrect";
         }
     }
 
-    get profilePic(){return this._profilePic;}
+    get profilePic(){
+        return this._profilePic;
+    }
     set profilePic(profilePic){
-        this._profilePic = profilePic;
+        this._profilePic=profilePic;
     }
 
-    get gender(){return this._gender;}
+    get gender(){
+        return this._gender;
+    }
     set gender(gender){
         this._gender=gender;
     }
 
-    get department(){return this._department;}
+    get department(){
+        return this._department;
+    }
     set department(department){
         this._department=department;
     }
 
-    get salary(){return this._salary;}
+    get salary(){
+        return this._salary;
+    }
     set salary(salary){
         this._salary=salary;
     }
 
-    get note(){return this._note;}
-    set note(note){
-        this._note=note;
+    get notes(){
+        return this._notes;
+    }
+    set notes(notes){
+        this._notes=notes;
     }
 
-    get startDate(){return this._startDate;}
+    get startDate(){
+        return this._startDate;
+    }
     set startDate(startDate){
+        let currentDate = new Date();
+        if(startDate > currentDate){
+            throw "Start date is a future date";
+        }
+        var diff = Math.abs(currentDate.getTime()- startDate.getTime());
+        if(diff/(1000*60*60*24)>30){
+            throw "Start date is beyond 30 days";
+        }
         this._startDate=startDate;
     }
-    
-    //method
-    toString(){
-        const options = {year: 'numeric', month: 'long', day: 'numeric' };
-        const empDate = !this.startDate ? "undefined" :
-                            this.startDate.tolocalesDateString("en-US", options);
-        return "id = " + this.id + ", name = " + this.name + ", profile= " + this.profilePic + ", gender = " + this.gender +
-        ", department = " + this.department + ", salary = " + this.salary + ", notes = " + this.notes +
-        ", startdate = " + this.startDate;
-    }
-}   
+}
