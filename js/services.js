@@ -1,5 +1,4 @@
 window.addEventListener('DOMContentLoaded', (event) => {
-
     validateName();
     salaryRange();
 })
@@ -8,12 +7,6 @@ function validateName() {
     const name = document.querySelector('#name');
     const nameError = document.querySelector('.text-error');
     name.addEventListener('input', function () {
-        // const nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
-        // if (nameRegex.test(name.value)){
-        //     nameError.textContent = "";
-        // }else{
-        //     nameError.textContent = "Name is incorrect";
-        // }
         try {
             let empData = new EmployeePayroll();
             empData.name = name.value;
@@ -27,17 +20,18 @@ function validateName() {
 function salaryRange() {
     const salary = document.querySelector('#salary');
     const output = document.querySelector('.salary-output');
-    // output.textContent = salary.value;
     salary.addEventListener('input', function () {
         output.textContent = salary.value;
     });
 }
 
 const save = () => {
-    // alert("Saved...");
+    try {
     let employeePayroll = createEmployeePayroll();
-    //alert(JSON.stringify(employeePayroll));
     createAndUpdateLocalStorage(employeePayroll);
+    } catch (e) {
+        return;
+    }
 }
 
 const createEmployeePayroll = () => {
@@ -48,16 +42,16 @@ const createEmployeePayroll = () => {
     } catch (e) {
         setTextValue('.text-error', e);
     }
-    // alert(employeePayroll);
+    
 
     try {
         let date = getInputValueId('#day') + " " + getInputValueId('#month') + " " + getInputValueId('#year');
-        employeePayroll.startDate = new Date(Date.parse(date));
+        employeePayroll.startDate = Date.parse(date);
         setTextValue('.date-error', "");
     } catch (e) {
         setTextValue('.date-error', e);
     }
-    //alert(JSON.stringify(employeePayroll));
+
 
     employeePayroll.profilePic = getSelectedValue('[name=profile]').pop();
     employeePayroll.gender = getSelectedValue('[name=gender]').pop();
@@ -99,5 +93,3 @@ const createAndUpdateLocalStorage = (empData) => {
     localStorage.setItem('EmployeePayrollList', JSON.stringify(dataList));
     alert("Data stored with name " + empData.name);
 }
-
-// const resetForm = () =>{}
