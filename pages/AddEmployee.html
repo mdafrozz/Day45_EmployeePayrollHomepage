@@ -22,12 +22,14 @@
         </div>
     </header>
     <!-- UC2 Form with header and name-->
-    <div id="formId" class="form-content">
-        <form class="form" action="#"  onsubmit="save();return false">
-            <div class="form-head">Employee Payroll form</div>
+    <div class="form-content">
+        <form class="form" action="#" onsubmit="save();return false">
+            <div class="form-head">
+                Employee Payroll form
+            </div>
             <div class="row-content">
                 <label class="label text" for="name">Name</label>
-                <input class="input" type="text" id="name" name="name" placeholder="Your name.." required>
+                <input class="input" type="text" id="name" name="name" placeholder="Your name..">
                 <error-output class="text-error" for="name"></error-output>
             </div>
 
@@ -61,32 +63,32 @@
             <div class="row-content">
                 <label class="label text" for="gender">Gender</label>
                 <div>
-                    <input type="radio" id="male" name="gender" value="male">
+                    <input type="radio" id="male" name="gender" value="Male">
                     <label class="text" for="male">Male</label>
-                    <input type="radio" id="female" name="gender" value="female">
+                    <input type="radio" id="female" name="gender" value="Female">
                     <label class="text" for="female">Female</label>
                 </div>
             </div>
             <div class="row-content">
                 <label class="label text" for="department">Department</label>
                 <div>
-                    <input type="checkbox" id="hr" name="hr" value="HR">
+                    <input type="checkbox" id="hr" name="department" value="HR">
                     <label class="text" for="hr">HR</label>
-                    <input type="checkbox" id="sales" name="sales" value="Sales">
+                    <input type="checkbox" id="sales" name="department" value="Sales">
                     <label class="text" for="sales">Sales</label>
-                    <input type="checkbox" id="finance" name="finance" value="Finance">
+                    <input type="checkbox" id="finance" name="department" value="Finance">
                     <label class="text" for="finance">Finance</label>
-                    <input type="checkbox" id="engineer" name="engineer" value="Engineer">
+                    <input type="checkbox" id="engineer" name="department" value="Engineer">
                     <label class="text" for="engineer">Engineer</label>
-                    <input type="checkbox" id="others" name="others" value="Others">
+                    <input type="checkbox" id="others" name="department" value="Others">
                     <label class="text" for="others">Others</label>
                 </div>
             </div>
             <div class="row-content">
                 <label class="label text" for="salary">Salary</label>
-                <input class="input" type="range" name="salary" id="salary" min="300000" max="500000" step="100"
+                <input class="input" type="range" id="salary" name="salary" min="300000" max="500000" step="100"
                     value="400000">
-                    <output class="salary-output text" for="salary">400000</output>
+                <salary-output class="salary-output" for="salary">400000</salary-output>
             </div>
 
             <!--UC5 Specify startdate with day, month, year-->
@@ -146,8 +148,8 @@
                         <option value="2020">2020</option>
                         <option value="2019">2019</option>
                         <option value="2018">2018</option>
-                        <option value="2017">2017</option>
                     </select>
+                    <error-output class="date-error" for="error"></error-output>
                 </div>
             </div>
 
@@ -155,13 +157,13 @@
             <!-- UC7 Using UXdesign set buttton style-->
             <div class="row-content">
                 <label class="label text" for="notes">Notes</label>
-                <textarea id="notes" class="input" name="Notes" placeholder="" style="height: 100px;"></textarea>
+                <textarea id="notes" class="input" name="notes" placeholder="" style="height: 100px;"></textarea>
             </div>
             <div class="buttonParent">
                 <a href="./HomePage.html" class="resetButton button cancelButton">Cancel</a>
                 <div class="submit-reset">
                     <button type="submit" class="button submitButton" id="submitButton">Submit</button>
-                    <button type="reset" class="resetButton button">Reset</button>
+                    <input type="reset" class="resetButton button">
                 </div>
             </div>
             <script type="text/javascript" src="../js/Services.js"></script>

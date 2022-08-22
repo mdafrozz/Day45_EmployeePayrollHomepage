@@ -1,9 +1,17 @@
+let employeePayrollList;
 window.addEventListener('DOMContentLoaded', () => {
+    employeePayrollList = getEmployeeDataFromStorage();
+    document.querySelector('.emp-count').textContent = employeePayrollList.length;
     createInnerHTML();
 })
 
+const getEmployeeDataFromStorage = () => {
+    return localStorage.getItem('EmployeePayrollList')
+        ? JSON.parse(localStorage.getItem('EmployeePayrollList')) : [];
+}
+
 const createInnerHTML = () => {
-    let employeePayrollList = createEmployeePayrollJson();
+    if (employeePayrollList.length == 0) return;
     const headerHtml = `
     <tr>
         <th></th>
@@ -16,8 +24,7 @@ const createInnerHTML = () => {
     </tr>`;
 
     let innerHtml = `${headerHtml}`;
-    // const innerHtml = ` ${headerHtml}
-    for(const employeePayrollData of employeePayrollList){
+    for (const employeePayrollData of employeePayrollList) {
         innerHtml = `${innerHtml}
         <tr>
         <td>
@@ -31,8 +38,10 @@ const createInnerHTML = () => {
         <td>${employeePayrollData._salary}</td>
         <td>${employeePayrollData._startDate}</td>
         <td>
-            <img name="${employeePayrollData._id}" alt="edit" src="../assets/icons/create-black-18dp.svg">
-            <img name="${employeePayrollData._id}" alt="delete" src="../assets/icons/delete-black-18dp.svg">
+            <img name="${employeePayrollData._id}" onclick="update(this)" alt="edit" 
+            src="../assets/icons/create-black-18dp.svg">
+            <img name="${employeePayrollData._id}" onclick="remove(this)" alt="delete" 
+            src="../assets/icons/delete-black-18dp.svg">
         </td>
     </tr>`;
     }
@@ -54,7 +63,7 @@ const createEmployeePayrollJson = () => {
             "_profilePic": "../assets/profile-images/Ellipse -3.png"
         },
         {
-            "id": new Date().getTime() +1,
+            "id": new Date().getTime() +1   ,
             "_name": "Kate",
             "_gender": "female",
             "_department": [
